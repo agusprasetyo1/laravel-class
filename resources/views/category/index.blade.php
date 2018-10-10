@@ -2,13 +2,13 @@
 
 @section('page-title')
 <h1>
-    <i class="fa fa-tachometer"></i> Products
+    <i class="fa fa-list"></i> Category
 </h1>
 @endsection
 
 @section('breadcrumb')
    <li><a href="#">Dashboard</a></li>
-   <li class="active">Users</li>
+   <li class="active">Category</li>
 @endsection
 
 @section('content')
@@ -22,14 +22,14 @@
                             <h3>Cari</h3>
                         </div>
                         <div class="x_content">
-                            <form class="form-inline" action="{{ route('users.index') }}" method="get">
+                            <form class="form-inline" action="{{ route('category.index') }}" method="get">
                                 <div class="form-group">
                                     <input type="text" name="keyword" placeholder="Nama / E-mail" value="{{ Request::get('keyword') }}" class="form-control">
                                 </div>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-primary btn-search"><i class="fa fa-search"></i> </button>
                                 </div>
-                                <a href="{{ route('users.index') }}" class="btn btn-info btn-search pull-right"><i class="fa fa-database"></i> Tampilkan Semua</a>
+                                <a href="{{ route('category.index') }}" class="btn btn-info btn-search pull-right"><i class="fa fa-database"></i> Tampilkan Semua</a>
                             </form>
                         </div>
                     </div>
@@ -46,7 +46,7 @@
                         <div class="x_title">
                             <h3>List Products
                            
-                            <a href="{{ route('users.create') }}" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Add New
+                            <a href="{{ route('category.create') }}" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Add New
                             </a>
                             <div class="clearfix"></div>
                         </div>
@@ -56,20 +56,20 @@
                                     <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Name</th>
-                                        <th>Email</th>
+                                        <th>ID Category</th>
+                                        <th>Category</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($data['users'] as $key => $user)
+                                    @foreach($data['category'] as $key => $data)
                                         <tr>
                                             <td>{{++$key}}</td>
-                                            <td>{{ $user->name }}</td>
-                                            <td>{{ $user->email }}</td>
+                                            <td>{{ $data->id }}</td>
+                                            <td>{{ $data->name }}</td>
                                             <td class="text-center">
-                                                <a href="{{ route('users.edit', ['id' => $user->id]) }}" class="btn btn-xs btn-warning"><i class="fa fa-edit"></i></a>
-                                                <a onclick="return confirm('Delete this data ?')" href="{{ route('users.delete', ['id' => $user->id]) }}" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i></a>
+                                                <a href="{{ route('category.edit', ['id' => $data->id]) }}" class="btn btn-xs btn-warning"><i class="fa fa-edit"></i></a>
+                                                <a onclick="return confirm('Delete this data ?')" href="{{ route('category.delete', ['id' => $data->id]) }}" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i></a>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -77,7 +77,7 @@
                                 </table>
                                 <div class="clearfix"></div>
                                 <div class="text-center">
-                                    {{$data['users']->links()}}
+                                    {{-- {{$data['']->links()}} --}}
                                 </div>
                             </div>
                         </div>

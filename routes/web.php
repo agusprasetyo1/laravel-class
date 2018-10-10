@@ -18,4 +18,8 @@ Route::get('/', function () {
 Route::resource('users', 'UsersController', ['except' => ['destroy']]);
 Route::get('users/{user}/delete', ['as' => 'users.delete', 'uses' => 'UsersController@destroy']);
 
-Route::resource('products', 'ProductsController');
+Route::resource('products', 'ProductsController', ['except' => ['destroy']]);
+Route::get('products/{id}/delete', ['as' => 'products.delete', 'uses' => 'ProductsController@destroy']);
+
+Route::resource('category', 'CategoryController', ['except' => ['destroy']]);
+Route::get('category/{id}/delete', ['as' => 'category.delete', 'uses' => 'CategoryController@destroy']);

@@ -62,21 +62,23 @@
                         </div>
                         <div class="x_content">
                             <div class="table-responsive">
-                                <table class="table table-striped jambo_table bulk_action">
+                                <table class="table table-striped jambo_table bulk_action table-hover" style="text-align: center">
                                     <thead>
                                     <tr>
-                                        <th>#</th>
-                                        <th>Name</th>
-                                        <th>Stock</th>
-                                        <th>Price</th>
-                                        <th>Action</th>
+                                        <th style="text-align: center;">#</th>
+                                        <th style="text-align: center;">Name</th>
+                                        <th style="text-align: center;">Category</th>
+                                        <th style="text-align: center;">Stock</th>
+                                        <th style="text-align: center;">Price</th>
+                                        <th style="text-align: center;">Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($data['products'] as $product)
+                                    @foreach($data['products'] as $key => $product)
                                         <tr>
-                                            <td></td>
+                                            <td>{{++$key}}</td>
                                             <td>{{ $product->name }}</td>
+                                            <td>{{ $product->category->name }}</td>
                                             <td>{{ $product->stock }}</td>
                                             <td>{{ $product->price }}</td>
                                             <td class="text-center">
@@ -89,6 +91,7 @@
                                 </table>
                                 <div class="clearfix"></div>
                                 <div class="text-center">
+                                    {{$data['products']->links()}}
                                 </div>
                             </div>
                         </div>
