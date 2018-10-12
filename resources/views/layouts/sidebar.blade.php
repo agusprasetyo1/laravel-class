@@ -8,4 +8,7 @@
 	<li>
 	   <a href="{{ route('category.index') }}"><i class="fa fa-list"></i> <span>Category</span></a>	
 	</li>
+	<li>
+	   <a href="{{ route('orders.index') }}"><i class="fa fa-dollar"></i> <span>Orders</span></a>	
+	</li>
 </ul>

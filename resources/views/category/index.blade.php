@@ -24,7 +24,7 @@
                         <div class="x_content">
                             <form class="form-inline" action="{{ route('category.index') }}" method="get">
                                 <div class="form-group">
-                                    <input type="text" name="keyword" placeholder="Nama / E-mail" value="{{ Request::get('keyword') }}" class="form-control">
+                                    <input type="text" name="keyword" placeholder="Nama Category" value="{{ Request::get('keyword') }}" class="form-control">
                                 </div>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-primary btn-search"><i class="fa fa-search"></i> </button>
@@ -44,7 +44,7 @@
                 <div class="box-body">
                     <div class="x_panel">
                         <div class="x_title">
-                            <h3>List Products
+                            <h3>List Category
                            
                             <a href="{{ route('category.create') }}" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Add New
                             </a>
@@ -77,7 +77,7 @@
                                 </table>
                                 <div class="clearfix"></div>
                                 <div class="text-center">
-                                    {{-- {{$data['']->links()}} --}}
+                                    {{-- {{ $data['category']->links() }} --}}
                                 </div>
                             </div>
                         </div>

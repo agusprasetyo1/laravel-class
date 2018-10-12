@@ -39,9 +39,9 @@
                             <div class='form-group row'>
                                 <label class='col-md-3 control-label'>Category</label>
                                 <div class='col-md-7'>
-                                 <select class="form-control">
+                                 <select class="form-control" name="category_id">
                                     @foreach($data['category'] as $data)
-                                       <option>{{$data->name}}</option>
+                                       <option value="{{$data->id}}">{{$data->name}}</option>
                                     @endforeach
                                  </select>
                                 </div>

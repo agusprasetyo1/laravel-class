@@ -8,7 +8,7 @@
 
 @section('breadcrumb')
 <li><a href="#">Dashboard</a></li>
-<li class="active">Kendaraan</li>
+<li class="active">Products</li>
 @endsection
 
 @section('content')
@@ -22,24 +22,14 @@
                             <h3>Cari</h3>
                         </div>
                         <div class="x_content">
-                            <form class="form-inline" action="{{ route('users.index') }}" method="get">
+                            <form class="form-inline" action="{{ route('products.index') }}" method="get">
                                 <div class="form-group">
-                                    <input type="text" name="search" placeholder="Nopol / Jenis" value="{{ Request::get('search') }}" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <input type="number" name="kapasitas" placeholder="Kapasitas" value="{{ Request::get('kapasitas') }}" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <select name="status" id="status" class="form-control">
-                                        <option value="1" {{ (Request::get('status')== 1) ? 'selected': '' }}>Tersedia</option>
-                                        <option value="0" {{ (Request::get('status')== 0) ? 'selected': '' }}>Tidak Tersedia</option>
-                                        <option value="" {{ (Request::get('status')== '') ? 'selected': '' }}>Status Kendaraan</option>
-                                    </select>
+                                    <input type="text" name="name" placeholder="name" value="{{ Request::get('name') }}" class="form-control">
                                 </div>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-primary btn-search"><i class="fa fa-search"></i> </button>
                                 </div>
-                                <a href="{{ route('users.index') }}" class="btn btn-info btn-search pull-right"><i class="fa fa-database"></i> Tampilkan Semua</a>
+                                <a href="{{ route('products.index') }}" class="btn btn-info btn-search pull-right"><i class="fa fa-database"></i> Tampilkan Semua</a>
                             </form>
                         </div>
                     </div>

@@ -12,10 +12,18 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(request $request)
     {
-        $data['category'] = Category::all();
-        return view('category.index', compact('data'));
+        //Menggunakan cara ke 3
+        $data['category'] = Category::where("name", "like", "%$request->keyword%")->get();
+
+        // $data['category'] = Category::when($request->keyword, function ($query) use ($request){
+        //     $query->where('name', 'like', "%{$request->keyword}%" );
+        //  })->paginate(3);
+
+         // $data['category']->appends($request->only('keyword'));
+
+        return view('category.index', compact("data"));
     }
 
     /**
@@ -25,7 +33,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('category.create');
     }
 
     /**
@@ -36,7 +44,8 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Category::create($request->all());
+        return redirect()->route('category.index');
     }
 
     /**
@@ -58,7 +67,8 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data['category'] = Category::find($id);
+        return view('category.edit', compact('data'));
     }
 
     /**
@@ -70,7 +80,9 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //bisa menggunakan $request-all() dan $request->only('','');
+        Category::find($id)->update($request->all());
+        return redirect()->route('category.index');
     }
 
     /**
@@ -81,6 +93,8 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Category::find($id)->delete();
+        return redirect()->route('category.index');
+
     }
 }

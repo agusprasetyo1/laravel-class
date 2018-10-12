@@ -18,7 +18,7 @@ class ProductsSeeder extends Seeder
          $category = Category::inRandomOrder()->first();
          
         	Products::create([
-        		'name'  	     => 'name '.$i,
+        		'name'  	  => 'name '.$i,
         		'price'       => 0,
         		'stock'       => 0,
         		'description' => 'description '.$i,

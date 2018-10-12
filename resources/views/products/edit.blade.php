@@ -30,6 +30,16 @@
                                 </div>
                             </div>
                             <div class='form-group row'>
+                                <label class='col-md-3 control-label'>Category</label>
+                                <div class='col-md-7'>
+                                 <select class="form-control" name="category_id">
+                                    @foreach($data['category'] as $dt)
+                                       <option value="{{$dt->id}}" {{($dt->id == $data['product']->category_id ? 'selected' : '')}}>{{$dt->name}}</option>
+                                    @endforeach
+                                 </select>
+                                </div>
+                            </div>
+                            <div class='form-group row'>
                                 <label class='col-md-3 control-label'>Stock</label>
                                 <div class='col-md-7'>
                                     <input type='number' class='form-control' name='stock' placeholder="Stock" required value="{{ $data['product']->stock }}">

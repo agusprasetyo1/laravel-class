@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Products;
 use App\Category;
+
 class ProductsController extends Controller
 {
     /**
@@ -12,11 +13,19 @@ class ProductsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(request $request)
     {
         // $data['products'] = Products::all();
-        $data['products'] = Products::paginate(5);
-        return view('products.index', compact('data'));
+        // $data['products'] = Category::where("name", "like", "%$request->name%")->get();
+        // $data['products'] = Category::paginate(5);
+
+      $data['products'] = Products::when($request->name, function ($query) use ($request){
+         $query->where('name', 'like', "%{$request->name}%" );
+      })->paginate(5);
+
+      $data['products']->appends($request->only('name'));
+
+      return view('products.index', compact('data'));
     }
 
     /**
@@ -39,8 +48,10 @@ class ProductsController extends Controller
     public function store(Request $request)
     {
          $request->validate([
-            'name' => 'required|unique:products, name',
-            
+            'name'      => 'required',
+            'stock'     => 'required',
+            'price'     => 'required'
+
          ]);
 
         Products::create($request->all());
@@ -67,7 +78,10 @@ class ProductsController extends Controller
      */
     public function edit($id)
     {
+
         $data['product'] = Products::find($id);
+        $data['category'] = Category::all();
+        
         return view('products.edit', compact('data'));
     }
 
