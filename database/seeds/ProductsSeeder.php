@@ -14,7 +14,7 @@ class ProductsSeeder extends Seeder
     public function run()
     {
         for ($i=0; $i < 5; $i++) {
-         //inRandomOrder =  Mengambil data acak pada tabel/model
+         //inRandomOrder =  Mengambil data acak pada tabel/model 
          $category = Category::inRandomOrder()->first();
          
         	Products::create([

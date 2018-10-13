@@ -64,7 +64,7 @@
                                     <tbody>
                                     @foreach($data['users'] as $key => $user)
                                         <tr>
-                                            <td>{{++$key}}</td>
+                                            <td>{{ $number++ }}</td>
                                             <td>{{ $user->name }}</td>
                                             <td>{{ $user->email }}</td>
                                             <td class="text-center">

@@ -51,7 +51,6 @@ class ProductsController extends Controller
             'name'      => 'required',
             'stock'     => 'required',
             'price'     => 'required'
-
          ]);
 
         Products::create($request->all());

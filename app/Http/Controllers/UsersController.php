@@ -22,20 +22,24 @@ class UsersController extends Controller
          // $cari->where('name', 'LIKE', '%' . $request->name . '%');
          // $cari = User::where('name', 'LIKE', '%' .$value. '%')->get();
       // }
-      
+      $pagination = 5;
       // Cara 2
       $data['users'] = User::when($request->keyword, function ($query) use ($request){
          $query->where('name', 'like', "%{$request->keyword}%" )
                ->orWhere('email', 'like', "%{$request->keyword}%");
-      })->paginate(5);
+      })->paginate($pagination);
 
       //Append adalah sebuah method yang berfungsi untuk memastikan bahwa query string yang boleh ditambahkan hanya yang diinisialisasi
       $data['users']->appends($request->only('keyword'));
       
+      $number = 1;
+      if (request()->has('page') && request()->get('page') > 1) {
+        $number += (request()->get('page') - 1) * $pagination;
+      }
       // $data['users'] = $cari->paginate(5);
       // $data['users'] = User::all();
       // 
-      return view("users.index", compact('data'));
+      return view("users.index", compact('data', 'number'));
     }
 
     /**

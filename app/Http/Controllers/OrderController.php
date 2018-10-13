@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Order;
+use App\User;
 
 class OrderController extends Controller
 {
@@ -11,9 +13,16 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+
+    public function indexUser()
     {
-        //
+        $data['orders'] = Order::all();
+        return view('orders.index', compact('data'));
+    }
+
+    public function userProducts($id)
+    {
+        // return view('orders.index', compact('data'));
     }
 
     /**

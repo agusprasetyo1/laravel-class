@@ -24,5 +24,10 @@ Route::get('products/{id}/delete', ['as' => 'products.delete', 'uses' => 'Produc
 Route::resource('category', 'CategoryController', ['except' => ['destroy']]);
 Route::get('category/{id}/delete', ['as' => 'category.delete', 'uses' => 'CategoryController@destroy']);
 
-Route::resource('orders', 'OrderController', ['except' => ['destroy']]);
-Route::get('orders/{id}/delete', ['as' => 'orders.delete', 'uses' => 'OrderController@destroy']);
+Route::get('orders', 'OrderController@indexUser')->name('orders.indexuser');
+Route::get('orders/{id}', 'OrderController@userProducts')->name('orders.userProducts');
+
+// route to show the login form
+Route::get('/admin/login', "Admin\AdminController@showLogin")->name("admin.show_login");
+// route to process the form
+Route::post('/admin/login', "Admin\AdminController@doLogin")->name("admin.login");

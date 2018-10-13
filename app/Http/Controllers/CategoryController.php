@@ -15,13 +15,13 @@ class CategoryController extends Controller
     public function index(request $request)
     {
         //Menggunakan cara ke 3
-        $data['category'] = Category::where("name", "like", "%$request->keyword%")->get();
+        // $data['category'] = Category::where("name", "like", "%$request->keyword%")->get();
 
-        // $data['category'] = Category::when($request->keyword, function ($query) use ($request){
-        //     $query->where('name', 'like', "%{$request->keyword}%" );
-        //  })->paginate(3);
+        $data['category'] = Category::when($request->keyword, function ($query) use ($request){
+            $query->where("name", "like", "%{$request->keyword}%");
+        })->paginate(5);
 
-         // $data['category']->appends($request->only('keyword'));
+        $data['category']->appends($request->only('keyword'));
 
         return view('category.index', compact("data"));
     }
