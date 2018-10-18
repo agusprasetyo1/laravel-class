@@ -15,8 +15,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//Mengirim email
+Route::get('/send/email', 'EmailController@mail');
+
 Route::resource('users', 'UsersController', ['except' => ['destroy']]);
 Route::get('users/{user}/delete', ['as' => 'users.delete', 'uses' => 'UsersController@destroy']);
+Route::get('download/exportexcel1', 'UsersController@exportexcel1')->name('users1.download'); //Export data excel dengan MatWebsite
+// Route::get('download/exportexcel1', 'UsersController@exportexcel1')->name('users1.download'); //Export data excel dengan box/spout
+
+Route::get('/cacheuser', 'UsersController@testCache')->name('users.cache');
 
 Route::resource('products', 'ProductsController', ['except' => ['destroy']]);
 Route::get('products/{id}/delete', ['as' => 'products.delete', 'uses' => 'ProductsController@destroy']);

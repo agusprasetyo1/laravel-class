@@ -3,29 +3,28 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Order;
-use App\User;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendMailable;
 
-class OrderController extends Controller
+class EmailController extends Controller
 {
+    public function mail(){
+        $name = "Agus Prasetyo";
+        Mail::to('agusprasetyo1889@gmail.com')->send(new SendMailable($name));
+
+        return "email was sent";
+    }
+
+
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
-    public function indexUser()
+    public function index()
     {
-        // $data['orders'] = Order::all();
-        // $data['orders'] = Order::with(['dataUser', 'dataProducts'])->get(); //untuk meload semua
-        $data['orders'] = Order::with(['dataUser', 'dataProducts'])->get(); //untuk meload semua
-
-        return view('orders.index', compact('data'));
-    }
-
-    public function userProducts($id)
-    {
-        // return view('orders.index', compact('data'));
+        //
     }
 
     /**

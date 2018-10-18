@@ -18,11 +18,11 @@ class ProductsSeeder extends Seeder
          $category = Category::inRandomOrder()->first();
          
         	Products::create([
-        		'name'  	  => 'name '.$i,
+        		'name'  	  => 'Dummy name '.$i,
         		'price'       => 0,
         		'stock'       => 0,
-        		'description' => 'description '.$i,
-        		'photo'		  => 'photo '.$i,
+        		'description' => 'Dummy description '.$i,
+        		'photo'		  => 'Dummy photo '.$i,
             'category_id' => $category->id
         	]);
         }

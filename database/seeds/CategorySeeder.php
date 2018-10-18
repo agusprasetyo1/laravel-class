@@ -12,10 +12,18 @@ class CategorySeeder extends Seeder
      */
     public function run()
     {
-        for ($i=0; $i < 5; $i++) { 
-        	Category::create([
-        		'name' => 'Category ' .$i
-        	]);
-        }
+        // Create category 10 rows
+        factory(Category::class, 10)->create()
+        // On each process would store product ( melakukan penambahan data product saat perulangan/pembuatan data )
+            ->each(function ($category){
+                //Menambahkan data product
+                $category->products()->save(factory(App\Products::class)->make());
+            });
+
+        // for ($i=0; $i < 5; $i++) { 
+        // 	Category::create([
+        // 		'name' => 'Category ' .$i
+        // 	]);
+        // }
     }
 }

@@ -12,12 +12,16 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-      for ($i=0; $i <= 5 ; $i++) { 
-	     	User::create([
-	     		'name' 	   => 'Junaedi' .$i,
-	     		'email'    => 'junaedi' .$i. '@gmail.com',
-	     		'password' => 'abcdefghijk'
-	     	]);
-      }
+      //Menambahkan data dengan faker
+      $users = factory(User::class, 10000)->create([
+        'password' => Hash::make('rahasia')
+      ]);
+      // for ($i=0; $i <= 5 ; $i++) { 
+	    //  	User::create([
+	    //  		'name' 	   => 'Dummy name' .$i,
+	    //  		'email'    => 'Dummy email' .$i. '@gmail.com',
+	    //  		'password' => Hash::make('Dummy password')
+	    //  	]);
+      // }
     }
 }

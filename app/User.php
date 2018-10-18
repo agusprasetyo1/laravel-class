@@ -33,7 +33,7 @@ class User extends Authenticatable
     ];
 
     public function products(){
-        // return $this->belongsToMany('App\Products', 'orderss')
         // return $this->belongsToMany('nama model', 'tabel yang berkaitan', 'kolom relasi', 'kolom yang dituju')
+        return $this->belongsToMany("App\Products", "orders", "user_id", "product_id");
     }
 }

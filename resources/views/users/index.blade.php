@@ -45,9 +45,9 @@
                     <div class="x_panel">
                         <div class="x_title">
                             <h3>List Products
-                           
-                            <a href="{{ route('users.create') }}" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Add New
-                            </a>
+                            <a href="{{ route('users.create') }}" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Add New </a>
+                              <a href="{{route('users1.download')}}" style="float: right;" class="btn btn-primary" title="Menggunakan Maatwebsite"><i class="fa fa-print"></i> Print XLS/excel</a>
+                              <a href="#" style="float: right;" class="btn btn-warning" title="Menggunakan box/spout"><i class="fa fa-print"></i> Print XLS/excel</a>
                             <div class="clearfix"></div>
                         </div>
                         <div class="x_content">
@@ -68,6 +68,7 @@
                                             <td>{{ $user->name }}</td>
                                             <td>{{ $user->email }}</td>
                                             <td class="text-center">
+                                                <a href="{{ route('users.show', ['id' => $user->id]) }}" class="btn btn-xs btn-success"><i class="fa fa-eye"></i></a>
                                                 <a href="{{ route('users.edit', ['id' => $user->id]) }}" class="btn btn-xs btn-warning"><i class="fa fa-edit"></i></a>
                                                 <a onclick="return confirm('Delete this data ?')" href="{{ route('users.delete', ['id' => $user->id]) }}" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i></a>
                                             </td>

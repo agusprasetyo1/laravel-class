@@ -16,7 +16,7 @@ class AdminSeeder extends Seeder
         	'name'     => 'Agus Prasetyo',
         	'username' => 'agus123',
         	'email'    => 'agus@gmail.com',
-        	'password' => Hash::make('agus')
+        	'password' => Bcrypt('agus')
         ]);
     }
 }
