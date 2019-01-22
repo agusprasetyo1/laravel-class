@@ -14,18 +14,22 @@ class OrderController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function indexUser()
+    public function index()
     {
-        // $data['orders'] = Order::all();
+        $data['orders'] = Order::all();
         // $data['orders'] = Order::with(['dataUser', 'dataProducts'])->get(); //untuk meload semua
-        $data['orders'] = Order::with(['dataUser', 'dataProducts'])->get(); //untuk meload semua
-
+        // $data['orders'] = Order::with(['dataUser', 'dataProducts'])->get(); //untuk meload semua
+        // dd($a);
         return view('orders.index', compact('data'));
     }
 
-    public function userProducts($id)
+    public function addOrder()
     {
-        // return view('orders.index', compact('data'));
+        return view('orders.addOrder');
+    }
+
+    public function showUsers() {
+        
     }
 
     /**

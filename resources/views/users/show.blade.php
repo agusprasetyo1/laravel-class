@@ -51,7 +51,8 @@
                                           <td>{{$item->category->name}}</td>
                                           <td>Rp. {{$item->price}}</td>
                                        </tr>
-                                    @endforeach
+                                       @endforeach
+										    {{$total}}
                                  @endif
                                  {{-- Cara di module --}}
 

@@ -12,11 +12,17 @@ class AdminSeeder extends Seeder
      */
     public function run()
     {
+        // Admin::create([
+        // 	'name'     => 'Agus Prasetyo',
+        // 	'username' => 'agus123',
+        // 	'email'    => 'agus@gmail.com',
+        // 	'password' => Bcrypt('agus')
+        // ]);
         Admin::create([
-        	'name'     => 'Agus Prasetyo',
-        	'username' => 'agus123',
-        	'email'    => 'agus@gmail.com',
-        	'password' => Bcrypt('agus')
+        	'name'     => 'Eko Prastiyo',
+        	'username' => 'eko123',
+        	'email'    => 'eko@gmail.com',
+        	'password' => Bcrypt('eko')
         ]);
     }
 }

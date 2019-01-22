@@ -2,13 +2,14 @@
 
 @section('page-title')
 <h1>
-    <i class="fa fa-dollar"></i> Orders
+    <i class="fa fa-dollar"></i> Add Orders
 </h1>
 @endsection
 
 @section('breadcrumb')
-   <li><a href="#">Dashboard</a></li>
-   <li class="active">Orders</li>
+	<li><a href="{{route('dashboard.index')}}">Dashboard</a></li>
+   <li><a href="{{route('orders.index')}}">Orders</a></li>
+   <li class="active">Add order</li>
 @endsection
 
 @section('content')
@@ -47,7 +48,7 @@
                             <h3>List Products
                            
                             {{-- <a href="{{ route('orders.create') }}" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Add New --}}
-                            <a href="{{ route('orders.addOrder') }}" class="btn btn-primary" style="float: right">add order</a>
+                                <a href="#" class="btn btn-primary" style="float: right">add order</a>
                                 <div class="clearfix"></div>
                         </div>
 
@@ -64,19 +65,19 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($data['orders'] as $key => $ord)
+                                    {{-- @foreach($data['orders'] as $key => $ord)
                                         <tr>
                                             <td>{{++$key}}</td>
                                             <td class="text-center">{{ $ord->dataUser->name }}</td>
                                             <td class="text-center">{{ $ord->dataProducts->name }}</td>
                                             <td class="text-center">{{ $ord->dataProducts->price }}</td>
                                             <td class="text-center">
-                                                {{-- <a href="{{ route('orders.userProducts', ['id' => $ord->id]) }}" class="btn btn-xs btn-success"><i class="fa fa-search"></i></a> --}}
+                                                <a href="{{ route('orders.userProducts', ['id' => $ord->id]) }}" class="btn btn-xs btn-success"><i class="fa fa-search"></i></a> --}}
                                                 {{-- <a href="{{ route('orders.edit', ['id' => $order->id]) }}" class="btn btn-xs btn-warning"><i class="fa fa-edit"></i></a> --}}
                                                 {{-- <a onclick="return confirm('Delete this data ?')" href="{{ route('orders.delete', ['id' => $order->id]) }}" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i></a> --}}
-                                            </td>
+                                            {{-- </td>
                                         </tr>
-                                    @endforeach
+                                    @endforeach --}}
                                     </tbody>
                                 </table>
                                 <div class="clearfix"></div>

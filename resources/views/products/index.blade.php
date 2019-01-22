@@ -24,7 +24,10 @@
                         <div class="x_content">
                             <form class="form-inline" action="{{ route('products.index') }}" method="get">
                                 <div class="form-group">
-                                    <input type="text" name="name" placeholder="name" value="{{ Request::get('name') }}" class="form-control">
+                                    <input type="text" name="name" placeholder="Product name" value="{{ Request::get('name') }}" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" name="category" placeholder="Category name" value="{{ Request::get('category') }}" class="form-control">
                                 </div>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-primary btn-search"><i class="fa fa-search"></i> </button>
@@ -45,7 +48,6 @@
                     <div class="x_panel">
                         <div class="x_title">
                             <h3>List Products
-                           
                             <a href="{{ route('products.create') }}" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Add New
                             </a>
                             <div class="clearfix"></div>
@@ -64,13 +66,13 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($data['products'] as $key => $product)
+                                    @foreach($data['products'] as $product)
                                         <tr>
-                                            <td>{{++$key}}</td>
+                                            <td>{{ $number++ }}</td>
                                             <td>{{ $product->name }}</td>
                                             <td>{{ $product->category->name }}</td>
                                             <td>{{ $product->stock }}</td>
-                                            <td>{{ $product->price }}</td>
+                                            <td>{{ toRupiah($product->price) }}</td> <!--MEnggunakan helper untuk konversi-->
                                             <td class="text-center">
                                                 <a href="{{ route('products.edit', ['id' => $product->id]) }}" class="btn btn-xs btn-warning"><i class="fa fa-edit"></i></a>
                                                 <a onclick="return confirm('Delete this data ?')" href="{{ route('products.delete', ['id' => $product->id]) }}" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i></a>

@@ -17,13 +17,17 @@ class CategoryController extends Controller
         //Menggunakan cara ke 3
         // $data['category'] = Category::where("name", "like", "%$request->keyword%")->get();
 
+        $pagination = 5;
+
         $data['category'] = Category::when($request->keyword, function ($query) use ($request){
             $query->where("name", "like", "%{$request->keyword}%");
-        })->paginate(5);
+        })->paginate($pagination);
 
         $data['category']->appends($request->only('keyword'));
 
-        return view('category.index', compact("data"));
+        $number = numberPagination($pagination);
+
+        return view('category.index', compact("data", "number"));
     }
 
     /**

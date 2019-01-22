@@ -33,7 +33,7 @@
                             <div class='form-group row'>
                                 <label class='col-md-3 control-label'>Name</label>
                                 <div class='col-md-7'>
-                                    <input type='text' class='form-control' name='name' placeholder="Name" required value="{{ old('name') }}">
+                                    <input type='text' class='form-control' name='name' placeholder="Name" value="{{ old('name') }}">
                                 </div>
                             </div>
                             <div class='form-group row'>

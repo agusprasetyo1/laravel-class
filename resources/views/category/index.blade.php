@@ -62,9 +62,9 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($data['category'] as $key => $dt)
+                                    @foreach($data['category'] as  $dt)
                                         <tr>
-                                            <td>{{++$key}}</td>
+                                            <td>{{ $number++ }}</td>
                                             <td>{{ $dt->id }}</td>
                                             <td>{{ $dt->name }}</td>
                                             <td class="text-center">

@@ -3,34 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
-use App\Mail\SendMailable;
-// use Mail;
+use App\User;
+use App\Products;
+use App\Category;
+use App\Order;
 
-class EmailController extends Controller
+
+class DashboardController extends Controller
 {
-    public function mail(){
-        $name = "Agus PRasetyo";
-        Mail::to("agusprasetyo1889@gmail.com")->send(new SendMailable($name));
-
-        return "email was sent";
-
-        // try {
-    	// 	$data = [
-    	// 		"foo" => "bar"
-    	// 	];
-    	// 	Mail::send('mail', $data, function($message) use($request) {
-		//          $message->to($request["to"], 'Laravel Class Malang')->subject('Laravel Basic Testing Mail');
-		//          $message->from("no-reply@laravelclass.com",'Laravel Class');
-		//     });
-		//     echo "Mail sent!";
-    	// } catch (\Exception $exception) {
-    	// 	return redirect()->back();
-    	// }
-    }
-
-
-
     /**
      * Display a listing of the resource.
      *
@@ -38,7 +18,12 @@ class EmailController extends Controller
      */
     public function index()
     {
-        return view('email.index');
+        $data['users'] = count(User::all());
+        $data['products'] = count(Products::all());
+        $data['category'] = count(Category::all());
+        $data['order'] = count(Order::all());
+        // $data['hitung'] = collect([2,1,3,4,5])->sum();
+        return view('dashboard.index', compact('data'));
     }
 
     /**

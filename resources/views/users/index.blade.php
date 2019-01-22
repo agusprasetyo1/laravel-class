@@ -44,11 +44,14 @@
                 <div class="box-body">
                     <div class="x_panel">
                         <div class="x_title">
-                            <h3>List Products
+                            <h3>List Users
                             <a href="{{ route('users.create') }}" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Add New </a>
-                              <a href="{{route('users1.download')}}" style="float: right;" class="btn btn-primary" title="Menggunakan Maatwebsite"><i class="fa fa-print"></i> Print XLS/excel</a>
-                              <a href="#" style="float: right;" class="btn btn-warning" title="Menggunakan box/spout"><i class="fa fa-print"></i> Print XLS/excel</a>
-                            <div class="clearfix"></div>
+									<div class="btn-group" style="float: right;">
+										<a href="#" class="btn btn-info" title="Print PDF"><i class="fa fa-print"></i> Print PDF</a>
+										<a href="{{ route('users2.download') }}" class="btn btn-warning" title="Menggunakan box/spout"><i class="fa fa-print"></i> Print XLS/excel</a>
+										<a href="{{route('users1.download')}}" class="btn btn-primary" title="Menggunakan Maatwebsite"><i class="fa fa-print"></i> Print XLS/excel</a>
+									</div>
+										  <div class="clearfix"></div>
                         </div>
                         <div class="x_content">
                             <div class="table-responsive">
@@ -62,7 +65,8 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($data['users'] as $key => $user)
+													<?php $nomer = 1 ?>
+													@foreach($data['users'] as $key => $user)
                                         <tr>
                                             <td>{{ $number++ }}</td>
                                             <td>{{ $user->name }}</td>

@@ -1,3 +1,3 @@
 <div>
-   Hi. This is : {{$name}}
+   nama saya {{$name}}
 </div>

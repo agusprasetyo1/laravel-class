@@ -19,8 +19,8 @@ class Order extends Model
 	public function dataUser(){
 		return $this->belongsTo('App\User', 'user_id', 'id');
 	}
-	public function dataProducts(){
 
+	public function dataProducts(){
 		return $this->belongsTo('App\Products', 'product_id', 'id');
 	}
 }

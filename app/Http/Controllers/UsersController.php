@@ -8,11 +8,17 @@ use App\Imports\UsersImport; //UNtuk import data
 use Maatwebsite\Excel\Facades\Excel; // Menggunakan Maatwebsite
 use Illuminate\Support\Facades\Cache; // digunakan untuk menginisialisasi cache
 
+use Box\Spout\Reader\ReaderFactory; //Untuk membaca file excel yang di upload/import pada box/spout
+use Box\Spout\Writer\WriterFactory; //Membuat file excel yang diexports di pada database
+use Box\Spout\Common\Type; //Menginisialisasi tipe yang digunakan untuk import ataupun export
+
 use App\User;
 
 
 class UsersController extends Controller
 {
+	public $i = 1;
+
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -32,18 +38,15 @@ class UsersController extends Controller
 		$data['users'] = User::when($request->keyword, function ($query) use ($request) {
 			$query->where('name', 'like', "%{$request->keyword}%")
 				->orWhere('email', 'like', "%{$request->keyword}%");
-		})->paginate($pagination);
+		})->orderBy('id', 'asc')->paginate($pagination);
 
-      //Append adalah sebuah method yang berfungsi untuk memastikan bahwa query string yang boleh ditambahkan hanya yang diinisialisasi
+      //Append adalah sebuah method yang berfungsi untuk memastikan bahwa query string yang boleh ditambahkan hanya yang diinisialisasi, biasannya untuk pencarian
 		$data['users']->appends($request->only('keyword'));
 
-		$number = 1;
-		if (request()->has('page') && request()->get('page') > 1) {
-			$number += (request()->get('page') - 1) * $pagination;
-		}
+		$number = numberPagination($pagination);
       // $data['users'] = $cari->paginate(5);
       // $data['users'] = User::all();
-      // 
+
 		return view("users.index", compact('data', 'number'));
 	}
 
@@ -77,9 +80,14 @@ class UsersController extends Controller
 			'email' => 'required|email',
 			'password' => 'required'
 		]);
+			// $password = bcrypt($request->password);
 
-		User::create($request->only('name', 'email', 'password'));
-
+		// User::create($request->only('name', 'email', 'password'));
+		User::create([
+			'name' 	  => $request->name,
+			'email'    => $request->email,
+			'password' => Bcrypt($request->password)
+		]);
 		return redirect()->route('users.index');
 	}
 
@@ -89,10 +97,14 @@ class UsersController extends Controller
 	 * @param  int  $id
 	 * @return \Illuminate\Http\Response
 	 */
-	public function show($id)
+	public function show(Request $request, $id)
 	{
 		$user = User::find($id);
-		return view("users.show", compact('user'));
+		$total = 0;
+		foreach ($user->products as $data) {
+			$total += $data->price;
+		}
+		return view("users.show", compact('user', 'total'));
 	}
 
 	/**
@@ -150,7 +162,25 @@ class UsersController extends Controller
 
 	public function export_excel2() //export data menggunakan box/spout
 	{
+		$title = ['no' ,'name', 'email'];
+		$filename = 'Export excel.xlsx';
+		$writer = WriterFactory::create(Type::XLSX); //untuk type XLSX
+		$users = User::select('*'); //mendapatkan seluruh data pada database [ menggunakan select('*') tidak eloquent]
 
+		$writer->openToBrowser($filename); //stream data directly to the browser [menampilkan data/melakukan eksekusi langsung]
+		$writer->addRow($title);
+		$users->chunk(500, function($datas) use ($writer){
+			foreach ($datas as $data) {
+				$writer->addRow([
+					$this->i++,
+					$data->name,
+					$data->email
+				]); //Menambahkan data perbaris
+			}
+		});
+
+		$writer->close();
+		exit();
 	}
 
 	public function testCache() //Test menggunakan cache

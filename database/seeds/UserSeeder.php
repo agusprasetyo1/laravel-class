@@ -13,9 +13,11 @@ class UserSeeder extends Seeder
     public function run()
     {
       //Menambahkan data dengan faker
-      $users = factory(User::class, 10000)->create([
-        'password' => Hash::make('rahasia')
+      $users = factory(User::class, 1)->create([
+        'password' => Bcrypt('rahasia')
       ]);
+
+      
       // for ($i=0; $i <= 5 ; $i++) { 
 	    //  	User::create([
 	    //  		'name' 	   => 'Dummy name' .$i,
